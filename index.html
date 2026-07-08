@@ -258,7 +258,17 @@
     <h2 class="big">The ghost doorway, cut open</h2>
     <p class="lead">A look through a Stage-1 wall at a hidden ghost doorway and the utilities waiting beside it.</p>
 
-    <div class="svgcard" style="margin-top:22px">
+    <figure style="margin:22px 0 0">
+      <a href="assets/ghost-wall-system.png" target="_blank" rel="noopener">
+        <img src="assets/ghost-wall-system.png" loading="lazy"
+          alt="The Ghost Wall™ System: cutaway of a framed, insulated, bolted ghost-door panel with electrical, water, gas and HVAC routed around it, plus the finished doorway revealed into the next stage"
+          onerror="this.closest('figure').style.display='none';document.getElementById('ghost-svg-fallback').style.display='block';"
+          style="width:100%;height:auto;border-radius:16px;border:1px solid var(--line);box-shadow:var(--shadow);display:block">
+      </a>
+      <figcaption style="text-align:center;font-size:.82rem;color:var(--ink-soft);margin-top:10px">The Ghost Wall™ system — built-in today, expanded tomorrow, without demolition. Tap to enlarge.</figcaption>
+    </figure>
+
+    <div class="svgcard" id="ghost-svg-fallback" style="margin-top:22px;display:none">
       <svg viewBox="0 0 560 360" role="img" aria-label="Cutaway of an ICF wall showing a hidden ghost doorway with a sacrificial panel and utilities routed around it">
         <!-- wall body -->
         <rect x="16" y="30" width="528" height="300" fill="#f3ead9" stroke="#3a2e28" stroke-width="2"/>
