@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Home That Grows With You — Phased Owner-Builder Homes</title>
+<meta name="description" content="Don't buy a starter home you'll outgrow. Build the first chapter of your forever home in engineered stages — and grow it in place as life and budget allow.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --clay:#b5532a; --clay-deep:#8f3f1f; --terracotta:#c4622d;
+    --stucco:#f7f1e7; --stucco-2:#efe6d6; --sand:#e7dccb;
+    --olive:#6f7d54; --olive-deep:#556042; --lav:#8e7ca8;
+    --ink:#3a2e28; --ink-soft:#6b5d54; --line:#dccdb8;
+    --sky:#cfe0e6; --gold:#c99a3f; --water:#3f77a6; --gas:#d99b1c; --elec:#c0392b; --hvac:#3f8f6a;
+    --shadow:0 10px 34px rgba(58,46,40,.12);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:'Inter',system-ui,sans-serif;color:var(--ink);
+    background:var(--stucco);line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,.serif{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;line-height:1.12;letter-spacing:.2px}
+  .wrap{max-width:960px;margin:0 auto;padding:0 22px}
+  section{padding:64px 0}
+  .eyebrow{font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--clay);font-weight:600;margin:0 0 12px}
+  p{margin:0 0 16px}
+  .lead{font-size:1.12rem;color:var(--ink-soft)}
+  a{color:var(--clay)}
+
+  /* HERO */
+  .hero{background:
+      radial-gradient(1200px 500px at 70% -10%, #dfeaec 0%, transparent 60%),
+      linear-gradient(180deg,#f3ecdf 0%, var(--stucco) 70%);
+    padding:74px 0 40px;text-align:center;border-bottom:1px solid var(--line)}
+  .hero h1{font-size:clamp(2.5rem,7vw,4.3rem);margin:.1em 0 .2em;font-weight:700}
+  .hero .sub{font-size:clamp(1.05rem,2.6vw,1.4rem);color:var(--ink-soft);max-width:640px;margin:0 auto 26px}
+  .badge{display:inline-block;background:var(--olive);color:#fff;border-radius:100px;
+    padding:7px 16px;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+  .cta{display:inline-block;background:var(--clay);color:#fff;text-decoration:none;
+    padding:15px 30px;border-radius:100px;font-weight:600;margin-top:8px;box-shadow:var(--shadow);
+    transition:transform .15s ease,background .15s}
+  .cta:hover{transform:translateY(-2px);background:var(--clay-deep)}
+
+  /* generic cards */
+  .grid{display:grid;gap:20px}
+  @media(min-width:720px){.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}}
+  .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:var(--shadow)}
+  .card h3{margin:.1em 0 .3em;font-size:1.5rem}
+  .num{font-family:'Cormorant Garamond',serif;font-size:2.6rem;color:var(--clay);font-weight:700;line-height:1}
+
+  .band{background:var(--ink);color:#f4ece0}
+  .band .eyebrow{color:var(--gold)}
+  .band h2{color:#fff}
+  .band p{color:#d9ccbd}
+  .band .card{background:#463830;border-color:#5b4a40;color:#f0e6d9}
+  .band .card h3{color:#fff}
+
+  h2.big{font-size:clamp(1.9rem,5vw,3rem);margin:.1em 0 .35em}
+
+  /* phase stepper */
+  .stepper{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:6px 0 22px}
+  .stepper button{font-family:inherit;font-weight:600;cursor:pointer;border:1px solid var(--line);
+    background:#fff;color:var(--ink);padding:11px 18px;border-radius:100px;font-size:.9rem;transition:.15s}
+  .stepper button.active{background:var(--clay);color:#fff;border-color:var(--clay)}
+  .plan-caption{text-align:center;max-width:620px;margin:0 auto;min-height:3.2em}
+  .plan-caption b{color:var(--clay)}
+  figure{margin:0}
+
+  /* render placeholder */
+  .render-ph{border:2px dashed var(--clay);border-radius:14px;background:
+      repeating-linear-gradient(45deg,#fbf6ee,#fbf6ee 14px,#f5ecdd 14px,#f5ecdd 28px);
+    min-height:190px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;color:var(--clay-deep);padding:20px;gap:6px}
+  .render-ph .tag{font-weight:600;letter-spacing:.04em}
+  .render-ph small{color:var(--ink-soft)}
+
+  /* steps list */
+  .steps{counter-reset:s;display:grid;gap:14px}
+  .step{display:flex;gap:16px;align-items:flex-start;background:#fff;border:1px solid var(--line);
+    border-radius:14px;padding:18px 20px}
+  .band .step{background:#463830;border-color:#5b4a40}
+  .step .dot{counter-increment:s;flex:0 0 42px;height:42px;border-radius:50%;background:var(--clay);
+    color:#fff;display:grid;place-items:center;font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700}
+  .step .dot::before{content:counter(s)}
+  .step h4{margin:.1em 0 .2em;font-size:1.12rem}
+  .step p{margin:0;font-size:.96rem}
+  .band .step p{color:#d9ccbd}
+
+  .svgcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+  svg{display:block;width:100%;height:auto}
+  .legend{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:10px;font-size:.82rem;color:var(--ink-soft)}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .sw{width:14px;height:14px;border-radius:3px;display:inline-block}
+
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  .foot{background:#2c221d;color:#cbbcae;text-align:center;padding:44px 22px}
+  .foot .serif{color:#fff;font-size:1.8rem}
+  .kicker{font-size:.8rem;color:var(--ink-soft);text-align:center;margin-top:10px}
+  .pill{display:inline-block;background:var(--stucco-2);border:1px solid var(--line);border-radius:100px;
+    padding:5px 13px;font-size:.8rem;margin:3px;color:var(--ink-soft)}
+</style>
+</head>
+<body id="top">
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap">
+    <span class="badge">Phased growth · Built to last</span>
+    <h1>The home that grows with&nbsp;you</h1>
+    <p class="sub">Don't buy a starter home you'll outgrow. Build the first chapter of your <em>forever</em> home — and add to it, in place, as life and budget allow.</p>
+    <a class="cta" href="#how">See how it works ↓</a>
+  </div>
+</header>
+
+<!-- ============ THE PROBLEM / PROMISE ============ -->
+<section>
+  <div class="wrap reveal">
+    <p class="eyebrow">Why this exists</p>
+    <h2 class="big">The starter home disappeared. So we changed when&nbsp;you&nbsp;buy.</h2>
+    <p class="lead">Housing has priced out the first-time buyer. The modest starter home is gone from new construction or bid out of reach — leaving a generation renting, or reaching for a trailer that depreciates like a car and builds no wealth.</p>
+    <p class="lead">Our answer is simple: build a small, permanent, real-foundation home in <b>planned stages</b>. Start with only the rooms you can afford and need today. Then grow the same house — never a remodel, never a move — as your family and savings grow. From day one you own the first stage of your forever home.</p>
+  </div>
+</section>
+
+<!-- ============ TWO LEVERS ============ -->
+<section style="background:var(--stucco-2);border-block:1px solid var(--line)">
+  <div class="wrap reveal">
+    <p class="eyebrow">How it becomes affordable</p>
+    <h2 class="big">Two real savings — stacked</h2>
+    <div class="grid g2" style="margin-top:26px">
+      <div class="card">
+        <div class="num">01</div>
+        <h3>Start small</h3>
+        <p>The biggest saving is simply building <b>less house up front</b>. Fewer square feet means less concrete, less roof, a faster build, and a mortgage sized to a small home — not a big one. You occupy the affordable core now and defer the rest until life requires it.</p>
+      </div>
+      <div class="card">
+        <div class="num">02</div>
+        <h3>Build some of it yourself</h3>
+        <p>The second saving is your own labor. Do as much or as little as you want on a <b>DIY dial</b> — from finishes to framing — and turn that work directly into equity. We teach every step, grounded in real field-tested builds, so it's guided, not guesswork.</p>
+      </div>
+    </div>
+    <p class="kicker">Both levers build the same thing: an appreciating, wealth-building asset on land you own — the opposite of a depreciating trailer. <em>(Savings scale with size and DIY level; every build is different.)</em></p>
+  </div>
+</section>
+
+<!-- ============ THREE CHAPTERS + INTERACTIVE FOOTPRINT ============ -->
+<section>
+  <div class="wrap reveal">
+    <p class="eyebrow">One home · three chapters</p>
+    <h2 class="big">Watch it grow</h2>
+    <p class="lead">Tap a phase. The <b>core never changes</b> — every stage was drawn and engineered before the first wall was poured. It just fills in.</p>
+
+    <div class="stepper" id="stepper">
+      <button data-phase="1" class="active">Phase 1 · Core</button>
+      <button data-phase="2">Phase 2 · L-shaped</button>
+      <button data-phase="3">Phase 3 · U-shaped</button>
+    </div>
+
+    <div class="svgcard">
+      <!-- top-down footprint; wings toggle -->
+      <svg viewBox="0 0 420 340" role="img" aria-label="Footprint growing from core to L to U">
+        <!-- courtyard -->
+        <g id="court" style="opacity:0">
+          <rect x="152" y="150" width="116" height="150" fill="#f4eeddff" stroke="#c9b485" stroke-dasharray="4 4"/>
+          <text x="210" y="228" text-anchor="middle" font-size="12" fill="#9a7d3f" font-family="Inter">Courtyard</text>
+          <circle cx="210" cy="252" r="7" fill="none" stroke="#9a7d3f"/>
+          <circle cx="210" cy="252" r="2" fill="#9a7d3f"/>
+        </g>
+        <!-- west wing (phase 3) -->
+        <g id="wingW" style="opacity:.18">
+          <rect x="60" y="150" width="92" height="150" fill="#eadff0" stroke="#8e7ca8"/>
+          <rect x="120" y="150" width="32" height="150" fill="#f2f0f4" stroke="#8e7ca8"/>
+          <text x="106" y="200" text-anchor="middle" font-size="10" font-family="Inter" fill="#6a5a80">Bedroom</text>
+          <text x="106" y="270" text-anchor="middle" font-size="10" font-family="Inter" fill="#6a5a80">Bedroom</text>
+          <text x="136" y="226" text-anchor="middle" font-size="9" font-family="Inter" fill="#6a5a80" transform="rotate(-90 136 226)">Hall</text>
+        </g>
+        <!-- east wing (phase 2) -->
+        <g id="wingE" style="opacity:.18">
+          <rect x="268" y="150" width="92" height="150" fill="#eadff0" stroke="#8e7ca8"/>
+          <rect x="268" y="150" width="32" height="150" fill="#f2f0f4" stroke="#8e7ca8"/>
+          <text x="330" y="200" text-anchor="middle" font-size="10" font-family="Inter" fill="#6a5a80">Bedroom</text>
+          <text x="330" y="270" text-anchor="middle" font-size="10" font-family="Inter" fill="#6a5a80">Bedroom</text>
+          <text x="284" y="226" text-anchor="middle" font-size="9" font-family="Inter" fill="#6a5a80" transform="rotate(-90 284 226)">Hall</text>
+        </g>
+        <!-- CORE (never changes) -->
+        <g id="core">
+          <rect x="60" y="44" width="300" height="106" fill="#fbf5ea" stroke="var(--ink)" stroke-width="2.5"/>
+          <rect x="60" y="44" width="92" height="106" fill="#fcf3d9"/>
+          <text x="106" y="100" text-anchor="middle" font-size="11" font-family="Inter" fill="#7a6b46">Living</text>
+          <rect x="268" y="44" width="92" height="66" fill="#d9e8f2"/>
+          <text x="314" y="82" text-anchor="middle" font-size="11" font-family="Inter" fill="#3f6f96">Kitchen</text>
+          <text x="314" y="132" text-anchor="middle" font-size="10" font-family="Inter" fill="#7a6b46">Dining</text>
+          <!-- two-story tower center -->
+          <rect x="152" y="44" width="116" height="106" fill="#ece3f2" stroke="var(--ink)"/>
+          <text x="210" y="88" text-anchor="middle" font-size="11" font-family="Inter" font-weight="600" fill="#5a4a7a">Two-story</text>
+          <text x="210" y="104" text-anchor="middle" font-size="11" font-family="Inter" font-weight="600" fill="#5a4a7a">core + stair</text>
+          <text x="210" y="122" text-anchor="middle" font-size="9" font-family="Inter" fill="#8a7aa0">(master above)</text>
+          <!-- main door -->
+          <rect x="200" y="40" width="20" height="6" fill="#c0392b"/>
+          <!-- ghost doors on south wall, aligned to each hall -->
+          <g id="ghostW">
+            <rect x="126" y="146" width="20" height="8" fill="#d5f5e3" stroke="#1e8449" stroke-dasharray="3 2"/>
+            <text x="136" y="168" text-anchor="middle" font-size="8.5" font-family="Inter" font-weight="600" fill="#1e8449">Ghost door</text>
+          </g>
+          <g id="ghostE">
+            <rect x="274" y="146" width="20" height="8" fill="#d5f5e3" stroke="#1e8449" stroke-dasharray="3 2"/>
+            <text x="284" y="168" text-anchor="middle" font-size="8.5" font-family="Inter" font-weight="600" fill="#1e8449">Ghost door</text>
+          </g>
+        </g>
+        <text x="210" y="24" text-anchor="middle" font-size="13" font-family="Inter" font-weight="600" fill="var(--ink)">Top-down footprint</text>
+      </svg>
+      <div class="legend">
+        <span><i class="sw" style="background:#ece3f2"></i>Two-story core</span>
+        <span><i class="sw" style="background:#d9e8f2"></i>Kitchen / wet</span>
+        <span><i class="sw" style="background:#eadff0"></i>Bedroom wing</span>
+        <span><i class="sw" style="background:#f4eedd"></i>Courtyard</span>
+        <span><i class="sw" style="background:#d5f5e3;border:1px dashed #1e8449"></i>Ghost door</span>
+      </div>
+    </div>
+    <p class="plan-caption" id="cap" style="margin-top:16px"></p>
+
+    <div class="grid g3" style="margin-top:24px">
+      <figure><div class="render-ph"><span style="font-size:1.6rem">🏛️</span><span class="tag">Phase 1 — Core</span><small>~900 sq ft · 2BR/1BA</small></div></figure>
+      <figure><div class="render-ph"><span style="font-size:1.6rem">🏡</span><span class="tag">Phase 2 — L-shaped</span><small>~1,600 sq ft · 3–4BR/2BA</small></div></figure>
+      <figure><div class="render-ph"><span style="font-size:1.6rem">🏰</span><span class="tag">Phase 3 — U-shaped</span><small>~2,300 sq ft · 4–5BR/3BA</small></div></figure>
+    </div>
+    <p class="kicker">Square footages are working estimates and will vary by design, site, and DIY level.</p>
+  </div>
+</section>
+
+<!-- ============ THE MECHANISM (the part people can't picture) ============ -->
+<section class="band" id="how">
+  <div class="wrap reveal">
+    <p class="eyebrow">The part everyone asks about</p>
+    <h2 class="big">How does a wall become a doorway?</h2>
+    <p class="lead" style="max-width:680px">This is the trick that makes staged building work — and it's simpler than it looks. The whole finished home is engineered <b>before Stage&nbsp;1 is poured</b>. Future openings are built now, hidden inside finished walls, and simply <b>revealed</b> later. No demolition drama. No structural surprises.</p>
+
+    <div class="steps" style="margin-top:26px">
+      <div class="step"><div class="dot"></div><div><h4>Foundation for the whole home — on day one</h4><p>The slab for the finished house is poured (or footings stubbed) at Stage&nbsp;1. Under it, water, drain, and electrical lines for <em>every</em> future room are placed, capped, and tagged — so nothing has to be dug up later.</p></div></div>
+      <div class="step"><div class="dot"></div><div><h4>Walls that stack like lightweight Legos</h4><p>The walls are insulated concrete forms (ICF): rigid foam blocks joined by plastic ties that stack easily by hand. Pros pour concrete inside. The result is the home's <b>premium wrapper</b> — quiet, storm-strong, and deeply energy-efficient.</p></div></div>
+      <div class="step"><div class="dot"></div><div><h4>Ghost doorways — framed now, hidden in plain sight</h4><p>Everywhere a future wing will attach, we cast a real, engineered opening into the wall now — concrete header and reinforced sides — then fill it with a <b>sacrificial panel</b> that's insulated and stuccoed to match. It looks like an ordinary finished wall. It's a door in waiting.</p></div></div>
+      <div class="step"><div class="dot"></div><div><h4>Utilities flow <em>around</em> the opening</h4><p>Electric, water, and gas never run through a ghost doorway — they route neatly around it and arrive at the seam <b>stubbed, capped, pressure-tested, and tagged</b>. When you expand, the connections are already there, waiting and labeled.</p></div></div>
+      <div class="step"><div class="dot"></div><div><h4>Equipment sized for the <em>finished</em> home</h4><p>The electrical panel, plumbing manifold, HVAC, gas trunk, and septic are all sized for Stage&nbsp;3 from the start — even while you live in Stage&nbsp;1. Expansion becomes a <b>connection</b>, not a re-engineering project.</p></div></div>
+      <div class="step"><div class="dot"></div><div><h4>Expansion day: reveal, connect, finish</h4><p>Cut the pre-scored stucco joint, lift out the panel, and a finished doorway appears. Connect the waiting utilities, frame and finish the new dry rooms — the owner-builder's easy part — and your home just grew.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GHOST DOOR CUTAWAY DIAGRAM ============ -->
+<section>
+  <div class="wrap reveal">
+    <p class="eyebrow">Inside the wall</p>
+    <h2 class="big">The ghost doorway, cut open</h2>
+    <p class="lead">A look through a Stage-1 wall at a hidden ghost doorway and the utilities waiting beside it.</p>
+
+    <div class="svgcard" style="margin-top:22px">
+      <svg viewBox="0 0 560 360" role="img" aria-label="Cutaway of an ICF wall showing a hidden ghost doorway with a sacrificial panel and utilities routed around it">
+        <!-- wall body -->
+        <rect x="16" y="30" width="528" height="300" fill="#f3ead9" stroke="#3a2e28" stroke-width="2"/>
+        <!-- ICF layer hint on far left -->
+        <rect x="16" y="30" width="34" height="300" fill="#e7dcc7"/>
+        <g stroke="#c9b78f">
+          <line x1="16" y1="60" x2="50" y2="60"/><line x1="16" y1="90" x2="50" y2="90"/>
+          <line x1="16" y1="120" x2="50" y2="120"/><line x1="16" y1="150" x2="50" y2="150"/>
+          <line x1="16" y1="180" x2="50" y2="180"/><line x1="16" y1="210" x2="50" y2="210"/>
+          <line x1="16" y1="240" x2="50" y2="240"/><line x1="16" y1="270" x2="50" y2="270"/><line x1="16" y1="300" x2="50" y2="300"/>
+        </g>
+        <text x="33" y="200" transform="rotate(-90 33 200)" text-anchor="middle" font-size="10" font-family="Inter" fill="#8a7550">ICF: foam + concrete core</text>
+
+        <!-- header / bond beam -->
+        <rect x="300" y="96" width="196" height="26" fill="#b9b0a2" stroke="#6f665a"/>
+        <text x="398" y="113" text-anchor="middle" font-size="11" font-family="Inter" fill="#3a2e28">Cast concrete header</text>
+        <!-- jambs -->
+        <rect x="300" y="122" width="18" height="208" fill="#b9b0a2" stroke="#6f665a"/>
+        <rect x="478" y="122" width="18" height="208" fill="#b9b0a2" stroke="#6f665a"/>
+        <!-- sacrificial panel -->
+        <rect x="318" y="122" width="160" height="208" fill="#efe2c8"/>
+        <g stroke="#d8c398" stroke-width="1">
+          <line x1="318" y1="150" x2="478" y2="150"/><line x1="318" y1="185" x2="478" y2="185"/>
+          <line x1="318" y1="220" x2="478" y2="220"/><line x1="318" y1="255" x2="478" y2="255"/><line x1="318" y1="290" x2="478" y2="290"/>
+        </g>
+        <text x="398" y="200" text-anchor="middle" font-size="12" font-family="Inter" font-weight="600" fill="#8a6a34">Sacrificial</text>
+        <text x="398" y="217" text-anchor="middle" font-size="12" font-family="Inter" font-weight="600" fill="#8a6a34">panel</text>
+        <text x="398" y="236" text-anchor="middle" font-size="9.5" font-family="Inter" fill="#a08a5c">stuccoed to match —</text>
+        <text x="398" y="249" text-anchor="middle" font-size="9.5" font-family="Inter" fill="#a08a5c">removed on expansion day</text>
+        <!-- pre-scored control joint -->
+        <line x1="318" y1="122" x2="318" y2="330" stroke="#8f3f1f" stroke-width="1.5" stroke-dasharray="5 3"/>
+        <line x1="478" y1="122" x2="478" y2="330" stroke="#8f3f1f" stroke-width="1.5" stroke-dasharray="5 3"/>
+        <text x="398" y="322" text-anchor="middle" font-size="9" font-family="Inter" fill="#8f3f1f">↑ pre-scored stucco joints — the invisible cut line</text>
+
+        <!-- no-run zone marker -->
+        <line x1="326" y1="135" x2="470" y2="135" stroke="#c0392b" stroke-width="1.4" stroke-dasharray="3 3"/>
+        <circle cx="398" cy="135" r="9" fill="#fff" stroke="#c0392b"/>
+        <text x="398" y="139" text-anchor="middle" font-size="12" fill="#c0392b" font-weight="700">✕</text>
+        <text x="398" y="126" text-anchor="middle" font-size="8.5" font-family="Inter" fill="#c0392b">no wires · no pipes through the panel</text>
+
+        <!-- utilities routed AROUND (left of opening, up and over to capped stubs by the jamb) -->
+        <!-- electrical -->
+        <path d="M120 330 V150 H300" fill="none" stroke="var(--elec)" stroke-width="3"/>
+        <circle cx="300" cy="150" r="5" fill="var(--elec)"/>
+        <!-- water -->
+        <path d="M150 330 V175 H300" fill="none" stroke="var(--water)" stroke-width="3"/>
+        <circle cx="300" cy="175" r="5" fill="var(--water)"/>
+        <!-- gas -->
+        <path d="M180 330 V200 H300" fill="none" stroke="var(--gas)" stroke-width="3"/>
+        <circle cx="300" cy="200" r="5" fill="var(--gas)"/>
+        <!-- hvac -->
+        <path d="M210 330 V225 H300" fill="none" stroke="var(--hvac)" stroke-width="3"/>
+        <circle cx="300" cy="225" r="5" fill="var(--hvac)"/>
+        <text x="120" y="352" text-anchor="middle" font-size="9" font-family="Inter" fill="#6b5d54">stubbed · capped · tagged</text>
+
+        <text x="165" y="66" font-size="12" font-family="Inter" font-weight="600" fill="#3a2e28">Utilities route around the opening →</text>
+      </svg>
+      <div class="legend">
+        <span><i class="sw" style="background:var(--elec)"></i>Electrical</span>
+        <span><i class="sw" style="background:var(--water)"></i>Water</span>
+        <span><i class="sw" style="background:var(--gas)"></i>Gas</span>
+        <span><i class="sw" style="background:var(--hvac)"></i>HVAC line-set</span>
+        <span><i class="sw" style="background:#efe2c8;border:1px solid #d8c398"></i>Sacrificial panel</span>
+        <span><i class="sw" style="background:#b9b0a2"></i>Concrete header/jambs</span>
+      </div>
+      <figcaption style="text-align:center;font-size:.82rem;color:var(--ink-soft);margin-top:12px">The Ghost Wall™ system — built-in today, expanded tomorrow, without demolition.</figcaption>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPANSION DAY STRIP ============ -->
+<section style="background:var(--stucco-2);border-block:1px solid var(--line)">
+  <div class="wrap reveal">
+    <p class="eyebrow">Expansion day, in four moves</p>
+    <h2 class="big">From finished wall to new wing</h2>
+    <div class="grid g2" style="margin-top:24px">
+      <div class="svgcard">
+        <svg viewBox="0 0 300 170" aria-label="Step 1: a finished wall with a hidden opening">
+          <rect x="10" y="10" width="280" height="150" fill="#f3ead9" stroke="#3a2e28" stroke-width="2"/>
+          <rect x="120" y="40" width="90" height="120" fill="#f3ead9" stroke="#cbb98f" stroke-dasharray="4 3"/>
+          <text x="150" y="30" font-size="12" font-family="Inter" font-weight="600" fill="#3a2e28">1 · Today</text>
+          <text x="165" y="105" text-anchor="middle" font-size="10" font-family="Inter" fill="#a08a5c">hidden opening</text>
+        </svg>
+        <p style="text-align:center;margin:.6em 0 0;font-size:.92rem">A finished, insulated wall. The engineered opening is sealed inside — you'd never know.</p>
+      </div>
+      <div class="svgcard">
+        <svg viewBox="0 0 300 170" aria-label="Step 2: cut the scored joint and remove the panel">
+          <rect x="10" y="10" width="280" height="150" fill="#f3ead9" stroke="#3a2e28" stroke-width="2"/>
+          <rect x="120" y="40" width="90" height="120" fill="#efe2c8" stroke="#8f3f1f" stroke-dasharray="5 3"/>
+          <path d="M120 40 L134 54 M120 60 L134 74 M120 80 L134 94" stroke="#8f3f1f" stroke-width="1.4"/>
+          <text x="150" y="30" font-size="12" font-family="Inter" font-weight="600" fill="#3a2e28">2 · Cut &amp; remove</text>
+          <text x="165" y="105" text-anchor="middle" font-size="10" font-family="Inter" fill="#8a6a34">panel out</text>
+        </svg>
+        <p style="text-align:center;margin:.6em 0 0;font-size:.92rem">Cut the pre-scored stucco joint and lift out the sacrificial panel. No shoring, no structural work.</p>
+      </div>
+      <div class="svgcard">
+        <svg viewBox="0 0 300 170" aria-label="Step 3: finished opening revealed with utility stubs">
+          <rect x="10" y="10" width="280" height="150" fill="#f3ead9" stroke="#3a2e28" stroke-width="2"/>
+          <rect x="118" y="36" width="94" height="8" fill="#b9b0a2"/>
+          <rect x="118" y="44" width="12" height="116" fill="#b9b0a2"/>
+          <rect x="200" y="44" width="12" height="116" fill="#b9b0a2"/>
+          <rect x="130" y="44" width="70" height="116" fill="#eef4ee"/>
+          <circle cx="130" cy="70" r="4" fill="var(--elec)"/><circle cx="130" cy="92" r="4" fill="var(--water)"/><circle cx="130" cy="114" r="4" fill="var(--gas)"/>
+          <text x="150" y="30" font-size="12" font-family="Inter" font-weight="600" fill="#3a2e28">3 · Revealed</text>
+        </svg>
+        <p style="text-align:center;margin:.6em 0 0;font-size:.92rem">A finished, engineered doorway — with the stubbed utilities right there, capped and labeled.</p>
+      </div>
+      <div class="svgcard">
+        <svg viewBox="0 0 300 170" aria-label="Step 4: new wing connected">
+          <rect x="10" y="10" width="150" height="150" fill="#f3ead9" stroke="#3a2e28" stroke-width="2"/>
+          <rect x="160" y="10" width="130" height="150" fill="#eadff0" stroke="#3a2e28" stroke-width="2"/>
+          <rect x="150" y="60" width="20" height="52" fill="#eef4ee" stroke="#6f665a"/>
+          <text x="150" y="30" font-size="12" font-family="Inter" font-weight="600" fill="#3a2e28">4 · Grown</text>
+          <text x="225" y="92" text-anchor="middle" font-size="11" font-family="Inter" fill="#6a5a80">new wing</text>
+        </svg>
+        <p style="text-align:center;margin:.6em 0 0;font-size:.92rem">Connect the waiting utilities, frame and finish the new rooms — the easy, DIY-friendly part — and the home has grown.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ICF WRAPPER ============ -->
+<section>
+  <div class="wrap reveal">
+    <p class="eyebrow">The premium wrapper</p>
+    <h2 class="big">Walls like light Legos, strong as a bunker</h2>
+    <div class="grid g2" style="align-items:center">
+      <div>
+        <p class="lead">The shell is <b>insulated concrete form (ICF)</b>: rigid foam blocks connected by plastic web ties that stack by hand — light, forgiving, and easy to move and adjust. Pros pour concrete down the cores.</p>
+        <p>What you get is a wrapper that's continuously insulated, remarkably quiet, fire- and storm-resistant, and cheap to heat and cool — a genuinely premium envelope that also happens to be friendly to owner-builders. It's the perfect body for ghost doorways, because the openings are simply cast in as the walls go up.</p>
+        <div style="margin-top:8px">
+          <span class="pill">Continuous insulation</span><span class="pill">Storm &amp; fire resistant</span>
+          <span class="pill">Quiet interiors</span><span class="pill">Low energy bills</span><span class="pill">DIY-friendly stacking</span>
+        </div>
+      </div>
+      <div class="svgcard">
+        <svg viewBox="0 0 300 220" aria-label="ICF forms stacking like blocks with ties">
+          <!-- stacked blocks -->
+          <g stroke="#6f665a">
+            <g>
+              <rect x="40" y="150" width="220" height="46" fill="#f0ede6"/>
+              <rect x="40" y="104" width="220" height="46" fill="#f6f3ec"/>
+              <rect x="60" y="58" width="200" height="46" fill="#f0ede6"/>
+            </g>
+            <!-- foam faces -->
+            <g fill="#e3ddcf">
+              <rect x="40" y="150" width="220" height="10"/><rect x="40" y="186" width="220" height="10"/>
+              <rect x="40" y="104" width="220" height="10"/><rect x="40" y="140" width="220" height="10"/>
+              <rect x="60" y="58" width="200" height="10"/><rect x="60" y="94" width="200" height="10"/>
+            </g>
+            <!-- ties -->
+            <g stroke="#3f8f6a" stroke-width="3">
+              <line x1="80" y1="160" x2="80" y2="186"/><line x1="140" y1="160" x2="140" y2="186"/><line x1="200" y1="160" x2="200" y2="186"/>
+              <line x1="80" y1="114" x2="80" y2="140"/><line x1="150" y1="114" x2="150" y2="140"/><line x1="220" y1="114" x2="220" y2="140"/>
+            </g>
+          </g>
+          <!-- concrete core hint -->
+          <text x="150" y="215" text-anchor="middle" font-size="10" font-family="Inter" fill="#6b5d54">foam form + green plastic ties · concrete poured inside</text>
+          <text x="150" y="40" text-anchor="middle" font-size="12" font-family="Inter" font-weight="600" fill="#3a2e28">Stack → tie → pour</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SWEAT EQUITY / DIAL ============ -->
+<section class="band">
+  <div class="wrap reveal">
+    <p class="eyebrow">Your effort, your equity</p>
+    <h2 class="big">Turn the dial to your comfort</h2>
+    <p class="lead" style="max-width:680px">Every plan ships with a DIY / Pro split map that marks exactly where a licensed pro must take over and where you can pick up the tools. Do 25% or 100% — the more you do, the more you save, and the labor you'd otherwise pay for becomes equity in your own home.</p>
+    <div class="grid g3" style="margin-top:24px">
+      <div class="card"><h3>You do</h3><p>Framing, insulation, drywall, finishes, paint, tile — the learnable work, taught step by step and timed to the inspections.</p></div>
+      <div class="card"><h3>Pros do</h3><p>The pour, and the final electrical, plumbing, gas and HVAC connections — batched at planned handoff points.</p></div>
+      <div class="card"><h3>Both win</h3><p>Because the wet, regulated systems are front-loaded into Stage 1, later stages are mostly dry rooms — your strong suit.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BANKABILITY ============ -->
+<section>
+  <div class="wrap reveal">
+    <p class="eyebrow">Made to be financed</p>
+    <h2 class="big">One plan the bank can say yes to</h2>
+    <p class="lead">The whole forever home is drawn and approved once. The bank sees the finished, appraisable end-state and a clear staged draw schedule from day one — and every stage ends complete, insurable, and move-in ready. Later stages are simple addition permits under a plan that's already blessed.</p>
+    <p>Prefer to skip the bank? The same staging lets you build from savings, one chapter at a time — the pay-as-you-go path.</p>
+  </div>
+</section>
+
+<!-- ============ CLOSING ============ -->
+<footer class="foot">
+  <p class="serif">One home. Three chapters. A lifetime of possibilities.</p>
+  <p style="max-width:520px;margin:10px auto 0">Start with what you can afford. Grow into everything you need. Own an asset that lasts — and that you helped build.</p>
+  <p style="margin-top:20px"><a class="cta" href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Start your first chapter</a></p>
+  <p style="margin-top:24px;font-size:.75rem;color:#8f8073">Phased owner-builder homes · concept brochure. Figures and square footages are working estimates and will vary by design, site, and DIY level.</p>
+</footer>
+
+<script>
+  // scroll reveal
+  const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // phase stepper
+  const caps={
+    1:"<b>Phase 1 — the core.</b> A complete, beautiful two-story home. Two ghost doors wait on the south wall, already engineered for what's next.",
+    2:"<b>Phase 2 — the L-shape.</b> One bedroom wing opens through a ghost door. You reach it down a hall along the courtyard — the courtyard is now half-framed.",
+    3:"<b>Phase 3 — the U-shape.</b> The second wing mirrors the first and closes the courtyard. The master, up in the core, looks out over it. The forever home is complete."
+  };
+  const wingE=document.getElementById('wingE'), wingW=document.getElementById('wingW'),
+        court=document.getElementById('court'), cap=document.getElementById('cap');
+  function setPhase(p){
+    wingE.style.opacity = p>=2 ? 1 : .16;
+    wingW.style.opacity = p>=3 ? 1 : .16;
+    court.style.opacity = p>=3 ? 1 : 0;
+    cap.innerHTML=caps[p];
+    document.querySelectorAll('#stepper button').forEach(b=>b.classList.toggle('active', b.dataset.phase==String(p)));
+  }
+  document.querySelectorAll('#stepper button').forEach(b=>b.addEventListener('click',()=>setPhase(+b.dataset.phase)));
+  setPhase(1);
+</script>
+</body>
+</html>
